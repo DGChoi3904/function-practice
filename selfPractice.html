@@ -7,6 +7,64 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="root"></div>
+  <script>
+
+    root = document.getElementById("root");
+    //증감율 계산기. 퍼센트로 표기. (현재가 - 이전가) / 이전가 * 100의 공식을 소숫점 2자리까지 내렸다.
+    function changeRateCal(oldValue, currentValue){
+      if(typeof(oldValue) && typeof(currentValue) === "number"){
+        let result = (currentValue - oldValue) / oldValue;
+        result *= 10000;
+        result = Math.round(result);
+        result /= 100;
+        return result + "%";
+      }
+    }
+    console.log(changeRateCal(100, 105));
+    //은행이자 계산기. 원 금액과 이자율,그리고 기간을 설정하면 금액이 나온다.
+    //필요한 것은 원 금액, 이자율의 기간, 이자율, 맡긴 기간 기준은 개월로 한다.
+    //let totalV = currentValue + ((currentValue * interestRate)*(time/interestPolicy));
+    
+    function totalInterestCal(currentValue, interestPolicy,interestRate, time) {
+      let totalValue = currentValue;
+      let policy = 0;
+      let rate = interestRate / 100;
+      console.log(totalValue);
+      console.log(rate);
+      //exception handler
+      if(typeof(currentValue) === "number" && typeof(interestRate) === "number" && typeof(time) === "number" && typeof(interestPolicy) === "string"){
+        console.log("hello world!");
+        switch(interestPolicy){
+          case "month" :
+            policy = 1;
+            break;
+          case "quarter" :  
+            policy = 3;
+            break;
+          case "half-year" :
+            policy = 6;
+            break;
+          case "year" :
+            policy = 12;
+            break;
+        }
+        console.log(policy);
+        if(policy <= 0) {
+          return "You pick the wrong house FOOL!";
+        } else {
+          for(let i = 1; i <= time ; i += policy) {
+            totalValue += totalValue*rate;
+          }
+          totalValue = (Math.round(totalValue*100))/100;
+          return totalValue;
+        }
+
+      }
+    }
   
+    
+    
+  </script>
 </body>
-</html>
+</html>`

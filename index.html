@@ -7,6 +7,18 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <div id="root">
+    <h1></h1>
+    <h2></h2>
+  </div>
+  <script>
+    let root = document.getElementById('root');
+    function percentageCalculatortoString(realValue, totalValue) {
+      let result = ( realValue / totalValue ) * 100;
+      return Math.round(result) + "%";
+    }
+    root.children[0].innerHTML = percentageCalculatortoString(40, 999);
+    root.children[1].innerHTML = percentageCalculatortoString(44, 65534);
+  </script>
 </body>
 </html>
